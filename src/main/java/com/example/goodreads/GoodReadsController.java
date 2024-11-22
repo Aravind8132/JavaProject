@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.example.goodreads.Book;
 import com.example.goodreads.BookService;
@@ -25,8 +27,12 @@ public class GoodReadsController {
 
     @PostMapping("/books")
     public Book addBook(@RequestBody Book book) {
-
         return s.addBook(book);
+    }
+
+    @PutMapping("/books/{bookId}")
+    public Book UpdateBook(@PathVariable("bookId") int bookId, @RequestBody Book book) {
+        return s.updateBook(bookId, book);
     }
 
 }

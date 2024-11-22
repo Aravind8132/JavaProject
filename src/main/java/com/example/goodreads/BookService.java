@@ -28,7 +28,7 @@ public class BookService implements BookRepository {
     @Override
     public Book getBookByid(int id) {
         Book book = hmap.get(id);
-        if (book != null) {
+        if (book == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
@@ -42,6 +42,22 @@ public class BookService implements BookRepository {
         UniqueId += 1;
 
         return book;
+    }
+
+    @Override
+    public Book updateBook(int bookId, Book book) {
+        Book ExistingBook = hmap.get(bookId);
+        if (ExistingBook == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        if (book.getName() != null) {
+            ExistingBook.setName(book.getName());
+        }
+        if (book.getImageUrl() != null) {
+            ExistingBook.setImageUrl(book.getImageUrl());
+        }
+        return ExistingBook;
+
     }
 
 }

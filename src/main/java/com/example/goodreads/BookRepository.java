@@ -10,4 +10,6 @@ public interface BookRepository {
     Book getBookByid(int bookId);
 
     Book addBook(Book book);
+
+    Book updateBook(int bookId, Book book);
 }
