@@ -8,4 +8,6 @@ public interface BookRepository {
     ArrayList<Book> getBooks();
 
     Book getBookByid(int bookId);
+
+    Book addBook(Book book);
 }

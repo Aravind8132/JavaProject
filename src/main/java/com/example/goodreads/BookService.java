@@ -7,6 +7,7 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
 
 public class BookService implements BookRepository {
+    int UniqueId = 3;
     private HashMap<Integer, Book> hmap = new HashMap<>();
 
     public BookService() {
@@ -27,10 +28,19 @@ public class BookService implements BookRepository {
     @Override
     public Book getBookByid(int id) {
         Book book = hmap.get(id);
-        if (book == null) {
+        if (book != null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
- 
+
+        return book;
+    }
+
+    @Override
+    public Book addBook(Book book) {
+        book.setId(UniqueId);
+        hmap.put(UniqueId, book);
+        UniqueId += 1;
+
         return book;
     }
 
